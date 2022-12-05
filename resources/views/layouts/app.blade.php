@@ -30,7 +30,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/guarantee">Гарантія</a>
+                        </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="/guarantee">Доставка</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -39,13 +45,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">Увійти</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">Зареєструватись</a>
                                 </li>
                             @endif
                         @else
