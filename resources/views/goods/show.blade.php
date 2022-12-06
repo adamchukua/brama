@@ -73,7 +73,7 @@
             <table class="table">
                 @foreach($good->reviews as $review)
                     <tr>
-                        <td>{{ $review->name }}</td>
+                        <td>{{ $review->user->name }}</td>
                         <td>{{ $review->text }}</td>
                     </tr>
                 @endforeach
