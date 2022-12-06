@@ -16,7 +16,7 @@ class ReviewController extends Controller
         ]);
 
         $good->reviews()->create(array_merge([
-            'name' => $user->name
+            'user_id' => $user->id
         ], $data));
 
         return redirect('/good/' . $good->id);
