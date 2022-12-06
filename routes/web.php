@@ -17,3 +17,6 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/good/{good}', [App\Http\Controllers\GoodController::class, 'show']);
+Route::group(['middleware' => 'verified'], function () {
+    Route::post('/good/{good}/review/store', [App\Http\Controllers\ReviewController::class, 'store']);
+});

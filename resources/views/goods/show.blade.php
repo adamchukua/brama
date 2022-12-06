@@ -47,6 +47,21 @@
 
             <h2>Відгуки</h2>
 
+            @guest
+                <p class="text-muted">Аби написати відгук Ви повинні <a href="{{ route("login") }}">увійти</a> в акаунт,
+                    або <a href="{{ route("register") }}">зареєструватись</a>.</p>
+            @endguest
+            @auth
+                <form action="/good/{{ $good->id }}/review/store" method="post">
+                    @csrf
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Напишіть ваш відгук" name="text">
+                        <button class="btn btn-outline-secondary" type="submit">Віправити</button>
+                    </div>
+                </form>
+            @endif
+
             <table class="table">
                 @foreach($good->reviews as $review)
                     <tr>
