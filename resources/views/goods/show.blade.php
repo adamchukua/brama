@@ -24,7 +24,7 @@
                 <div class="col-4">
                     <h1>{{ $good->title }}</h1>
 
-                    <p>{{ $good->price }}</p>
+                    <p>@hryvnias($good->price)</p>
                 </div>
             </div>
 
