@@ -10,8 +10,12 @@
 
             <ul>
                 <li>Головне</li>
-                <li>Опис</li>
-                <li>Характеристики</li>
+                @if($good->description != null)
+                    <li>Опис</li>
+                @endif
+                @if($good->characteristics->first() != null)
+                    <li>Характеристики</li>
+                @endif
                 <li>Доставка і гарантія</li>
                 <li>Відгуки</li>
             </ul>
@@ -20,7 +24,7 @@
         <div class="col-9">
             <div class="row">
                 <div class="col-8">
-                    <img src="/storage/{{ $good->images->first()->path }}" alt="{{ $good->title }}" class="w-100">
+                    <img src="/storage/{{ $good->images->first()->path ?? '' }}" alt="{{ $good->title }}" class="w-100">
                 </div>
 
                 <div class="col-4">
@@ -36,16 +40,18 @@
                 <p>{{ $good->description }}</p>
             @endif
 
-            <h2>Характеристики</h2>
+            @if($good->characteristics->first() != null)
+                <h2>Характеристики</h2>
 
-            <table class="table">
-                @foreach($good->characteristics as $characteristic)
-                    <tr>
-                        <td>{{ $characteristic->title }}</td>
-                        <td>{{ $characteristic->value }}</td>
-                    </tr>
-                @endforeach
-            </table>
+                <table class="table">
+                    @foreach($good->characteristics as $characteristic)
+                        <tr>
+                            <td>{{ $characteristic->title }}</td>
+                            <td>{{ $characteristic->value }}</td>
+                        </tr>
+                    @endforeach
+                </table>
+            @endif
 
             <h2>Відгуки</h2>
 
