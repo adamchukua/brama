@@ -12,10 +12,10 @@
                 @foreach($sections as $section)
                     @if($section->subsection_id == null)
                         <li>
-                            {{ $section->section }}
+                            {{ $section->title }}
                             <ul>
                                 @foreach(\App\Models\Section::where('subsection_id', $section->id)->get() as $subsection)
-                                    <li>{{ $subsection->section }}</li>
+                                    <li>{{ $subsection->title }}</li>
                                 @endforeach
                             </ul>
                         </li>
