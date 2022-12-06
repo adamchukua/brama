@@ -1,4 +1,4 @@
-<p align="center"><img src="https://i.imgur.com/t3HNGG4.png" width="400" alt="Brama Logo"></p>
+<p align="center"><img src="https://i.imgur.com/t3HNGG4.png" width="200" alt="Brama Logo"></p>
 
 ## Опис
 
