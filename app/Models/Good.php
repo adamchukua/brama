@@ -28,4 +28,9 @@ class Good extends Model
     {
         return $this->belongsTo(Section::class);
     }
+
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class);
+    }
 }

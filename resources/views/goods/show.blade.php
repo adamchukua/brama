@@ -58,7 +58,15 @@
                 <div class="col-4">
                     <h1>{{ $good->title }}</h1>
 
-                    <p>@hryvnias($good->price)</p>
+                    <p>Продавець: {{ $good->seller->title }}</p>
+
+                    <p><strong>@hryvnias($good->price)</strong></p>
+
+                    @if($good->quantity > 0)
+                        <button class="btn btn-primary">Купити</button>
+                    @else
+                        <p class="text-muted">Немає в наявності</p>
+                    @endif
                 </div>
             </div>
 
