@@ -15,4 +15,9 @@ class Review extends Model
     {
         return $this->belongsTo(Good::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
