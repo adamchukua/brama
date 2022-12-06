@@ -18,7 +18,7 @@
         <div class="col-9">
             <div class="row">
                 <div class="col-8">
-                    <img src="https://icatcare.org/app/uploads/2018/06/Layer-1704-1920x840.jpg" alt="" class="w-100">
+                    <img src="/storage/{{ $good->images->first()->path }}" alt="{{ $good->title }}" class="w-100">
                 </div>
 
                 <div class="col-4">
