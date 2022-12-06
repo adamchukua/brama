@@ -22,6 +22,34 @@
         </div>
 
         <div class="col-9">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="/">Головна</a>
+                    </li>
+
+                    @php
+                        $section = \App\Models\Section::where('id', $good->section->subsection_id)->first()
+                    @endphp
+
+                    @while($section != null)
+                        <li class="breadcrumb-item">
+                            <a href="#">{{ $section->title }}</a>
+                        </li>
+
+                        @php
+                            $section = \App\Models\Section::where('id', $section->subsection_id)->first()
+                        @endphp
+                    @endwhile
+
+                    <li class="breadcrumb-item">
+                        <a href="#">{{ $good->section->title }}</a>
+                    </li>
+
+                    <li class="breadcrumb-item active">{{ $good->title }}</li>
+                </ol>
+            </nav>
+
             <div class="row">
                 <div class="col-8">
                     <img src="/storage/{{ $good->images->first()->path ?? '' }}" alt="{{ $good->title }}" class="w-100">
