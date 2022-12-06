@@ -9,8 +9,10 @@ class Section extends Model
 {
     use HasFactory;
 
+    /*
     public function good()
     {
         return $this->belongsTo(Good::class);
     }
+    */
 }
