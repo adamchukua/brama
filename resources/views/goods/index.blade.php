@@ -40,7 +40,13 @@
         </div>
 
         <div class="col-9">
-            <h1>Всі товари</h1>
+            @if(app('request')->input('search'))
+                <h1>Результат пошуку: {{ app('request')->input('search') }}</h1>
+            @else
+                <h1>Всі товари</h1>
+            @endif
+
+            <p class="text-muted">Кількість: {{ $goods->count() }}</p>
 
             <div class="row g-2">
                 @foreach($goods as $good)

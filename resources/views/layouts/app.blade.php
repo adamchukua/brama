@@ -47,6 +47,11 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <form method="get" action="/goods" class="d-flex me-4">
+                            <input class="form-control me-2" type="search" placeholder="Пошук товарів..." name="search">
+                            <button class="btn btn-secondary" type="submit">Пошук</button>
+                        </form>
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))

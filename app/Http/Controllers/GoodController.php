@@ -15,9 +15,21 @@ class GoodController extends Controller
         return view('goods.show', compact('good'));
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $goods = Good::all();
+        if ($request['search']) {
+            $goods = Good::where('title', 'LIKE', "%{$request['search']}%")
+                ->orWhere('description', 'LIKE', "%{$request['search']}%")->get();
+                //->orWhere('sections.title', 'LIKE', "%{$request['search']}%")->get();
+
+            $goods = Good::selectRaw('goods.title, goods.price, goods.id')
+                ->join('sections', 'sections.id', '=', 'goods.section_id')
+                ->where('goods.title', 'LIKE', "%{$request['search']}%")
+                ->orWhere('goods.description', 'LIKE', "%{$request['search']}%")
+                ->orWhere('sections.title', 'LIKE', "%{$request['search']}%")->get();
+        } else {
+            $goods = Good::all();
+        }
 
         return view('goods.index', compact('goods'));
     }
