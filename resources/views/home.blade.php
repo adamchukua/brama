@@ -6,18 +6,29 @@
 <div class="container">
     <div class="row">
         <div class="col-3">
-            <h2>Каталог</h2>
+            <h2 class="fw-bolder">Каталог</h2>
 
-            <ul>
+            <ul class="list-unstyled">
                 @foreach($sections as $section)
                     @if($section->subsection_id == null)
                         <li>
-                            {{ $section->title }}
-                            <ul>
-                                @foreach(\App\Models\Section::where('subsection_id', $section->id)->get() as $subsection)
-                                    <li>{{ $subsection->title }}</li>
-                                @endforeach
-                            </ul>
+                            <a class="fw-bold"
+                               data-bs-toggle="collapse"
+                               href="#collapse{{ $section->id }}"
+                               role="button"
+                               aria-expanded="false"
+                               aria-controls="collapse{{ $section->id }}">
+                                {{ $section->title }}
+                                <ul class="list-unstyled collapse" id="collapse{{ $section->id }}">
+                                    @foreach(\App\Models\Section::where('subsection_id', $section->id)->get() as $subsection)
+                                        <li>
+                                            <a href="/goods?section={{ $subsection->id }}">
+                                                {{ $subsection->title }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </a>
                         </li>
                     @endif
                 @endforeach
