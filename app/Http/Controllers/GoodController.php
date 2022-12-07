@@ -14,4 +14,11 @@ class GoodController extends Controller
 
         return view('goods.show', compact('good'));
     }
+
+    public function index()
+    {
+        $goods = Good::all();
+
+        return view('goods.index', compact('goods'));
+    }
 }

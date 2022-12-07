@@ -20,3 +20,4 @@ Route::get('/good/{good}', [App\Http\Controllers\GoodController::class, 'show'])
 Route::group(['middleware' => 'verified'], function () {
     Route::post('/good/{good}/review/store', [App\Http\Controllers\ReviewController::class, 'store']);
 });
+Route::get('/goods', [App\Http\Controllers\GoodController::class, 'index']);
