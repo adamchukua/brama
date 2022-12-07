@@ -36,17 +36,47 @@
         </div>
 
         <div class="col-9">
-            <h1>Content</h1>
+            <img src="https://htmlcolorcodes.com/assets/images/colors/gray-color-solid-background-1920x1080.png"
+                 alt="ad"
+                 class="w-100">
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque mollis mi eget viverra luctus. Curabitur ac justo ac purus sagittis cursus. Sed imperdiet luctus justo, in lacinia libero convallis eu. Suspendisse magna urna, facilisis in porta eu, elementum a dolor. Sed ut justo ex. Ut a bibendum purus, sit amet euismod enim. Vivamus magna dolor, elementum quis consectetur nec, vestibulum nec ligula.
+            <h1 class="fw-bold my-4">Найпопулярніші товари</h1>
 
-                Curabitur et viverra ligula, sit amet volutpat est. Vivamus suscipit tortor at quam ultricies suscipit. Phasellus ut iaculis neque. Phasellus cursus maximus vulputate. Sed sit amet purus consequat, lobortis velit sed, congue lorem. Donec ligula ex, suscipit sed enim ut, convallis hendrerit ipsum. Maecenas semper magna et viverra euismod. Etiam consequat nisi vel lorem malesuada, a interdum sapien interdum. Donec cursus auctor semper. Quisque at leo vitae nunc molestie venenatis. Donec vulputate nulla ut ligula molestie cursus. Mauris eleifend semper neque nec tincidunt. Cras id pulvinar turpis.
+            <div class="row g-2">
+                @foreach($goods as $good)
+                    <div class="col-4">
+                        <div class="card p-2">
+                            <img src="/storage/{{ $good->images->first()->path ?? '' }}"
+                                 class="card-img-top" alt="{{ $good->title }}">
 
-                Vestibulum feugiat arcu lacus, nec sollicitudin elit consectetur eu. Pellentesque consequat eu mi id hendrerit. Aliquam nulla ipsum, commodo sagittis scelerisque volutpat, imperdiet sed dolor. Donec non quam neque. Nam ut rhoncus urna, eu luctus dolor. Aenean fermentum, tellus euismod dictum feugiat, nunc nisi faucibus ipsum, nec faucibus eros est et felis. Vestibulum pulvinar urna nec magna vestibulum cursus. Suspendisse potenti. Donec ac libero vel metus lacinia vestibulum ut ac nisl.
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $good->title }}</h5>
+                                <p class="card-text fw-bold">@hryvnias($good->price)</p>
+                                <a href="/good/{{ $good->id }}" class="btn btn-primary">Купити</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
 
-                Quisque ut fermentum erat. Nulla in iaculis metus. Fusce ut blandit tellus. Aliquam commodo rhoncus ex, quis commodo erat varius sit amet. Nullam aliquam nibh laoreet, maximus purus non, vulputate tortor. Nunc ut diam aliquam, ornare augue ut, laoreet nisi. Fusce augue urna, accumsan eu orci a, congue ultricies justo. Suspendisse pretium elit eget ipsum vehicula varius. Vestibulum interdum molestie ipsum, et vestibulum lectus dapibus vel. Maecenas posuere est vel libero venenatis, et semper justo efficitur. Proin auctor sodales odio, sit amet hendrerit tortor. Phasellus eleifend felis elit, non mattis lorem commodo sed.
+            <h1 class="fw-bold my-4">Ви нещодавно переглядали</h1>
 
-                Nunc ut leo vitae massa vehicula vehicula sit amet eget nibh. Etiam cursus id massa et rutrum. Pellentesque aliquam sit amet nibh at scelerisque. Nunc arcu arcu, vulputate quis dolor sed, ultricies rutrum ligula. Nam pellentesque aliquet lacinia. Nullam nec nisi eros. Donec ac diam condimentum, aliquet est vitae, aliquet leo. Suspendisse vitae ante mattis, ullamcorper ligula quis, blandit ligula. Sed diam arcu, tincidunt a varius vitae, lobortis a ex. In at elit sit amet neque blandit volutpat vel sit amet eros.</p>
+            <div class="row g-2">
+                @foreach($goods as $good)
+                    <div class="col-4">
+                        <div class="card p-2">
+                            <img src="/storage/{{ $good->images->first()->path ?? '' }}"
+                                 class="card-img-top" alt="{{ $good->title }}">
+
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $good->title }}</h5>
+                                <p class="card-text fw-bold">@hryvnias($good->price)</p>
+                                <a href="/good/{{ $good->id }}" class="btn btn-primary">Купити</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 </div>
