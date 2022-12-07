@@ -11,18 +11,18 @@
             <ul class="list-unstyled">
                 @foreach($sections as $section)
                     @if($section->subsection_id == null)
-                        <li>
-                            <a class="fw-bold"
+                        <li class="my-2">
+                            <a class="fw-bold text-decoration-none"
                                data-bs-toggle="collapse"
                                href="#collapse{{ $section->id }}"
                                role="button"
                                aria-expanded="false"
                                aria-controls="collapse{{ $section->id }}">
-                                {{ $section->title }}
+                                ▶ {{ $section->title }}
                                 <ul class="list-unstyled collapse" id="collapse{{ $section->id }}">
                                     @foreach(\App\Models\Section::where('subsection_id', $section->id)->get() as $subsection)
                                         <li>
-                                            <a href="/goods?section={{ $subsection->id }}">
+                                            <a href="/goods?section={{ $subsection->id }}" class="text-decoration-none">
                                                 {{ $subsection->title }}
                                             </a>
                                         </li>
