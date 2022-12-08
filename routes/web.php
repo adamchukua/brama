@@ -28,6 +28,8 @@ Route::group(['middleware' => 'verified'], function () {
 });
 Route::get('/goods', [App\Http\Controllers\GoodController::class, 'index']);
 Route::get('/user/{user}', [App\Http\Controllers\UserController::class, 'show']);
+Route::get('/user/{user}/edit', [App\Http\Controllers\UserController::class, 'edit']);
+Route::patch('/user/{user}/update', [App\Http\Controllers\UserController::class, 'update']);
 Route::get('/admin', function () {
    return view('admin.index');
 });

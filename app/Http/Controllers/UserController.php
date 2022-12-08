@@ -55,11 +55,13 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(User $user)
     {
-        //
+        $this->authorize('update', $user);
+
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -67,11 +69,23 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, User $user)
     {
-        //
+        $data = $request->validate([
+            'name' => ['string', 'max:255'],
+            'email' => ['string', 'email', 'max:255', ($user->email != $request['email'] ? 'unique:users' : '')],
+        ]);
+
+        if ($user->email != $request['email']) {
+            $user->email_verified_at = null;
+            $user->save();
+        }
+
+        $user->update($data);
+
+        return redirect('/user/' . $user->id . '/edit');
     }
 
     /**
