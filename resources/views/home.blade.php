@@ -8,31 +8,33 @@
         <div class="col-3">
             <h2 class="fw-bolder">Каталог</h2>
 
-            <ul class="list-unstyled">
+            <div class="accordion accordion-flush mt-3" id="accordionFlushExample">
                 @foreach($sections as $section)
                     @if($section->subsection_id == null)
-                        <li class="my-2">
-                            <a class="fw-bold text-decoration-none"
-                               data-bs-toggle="collapse"
-                               href="#collapse{{ $section->id }}"
-                               role="button"
-                               aria-expanded="false"
-                               aria-controls="collapse{{ $section->id }}">
-                                ▶ {{ $section->title }}
-                                <ul class="list-unstyled collapse" id="collapse{{ $section->id }}">
-                                    @foreach(\App\Models\Section::where('subsection_id', $section->id)->get() as $subsection)
-                                        <li>
-                                            <a href="/goods?section={{ $subsection->id }}" class="text-decoration-none">
-                                                {{ $subsection->title }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </a>
-                        </li>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $section->id }}" aria-expanded="false" aria-controls="flush-collapse{{ $section->id }}">
+                                    {{ $section->title }}
+                                </button>
+                            </h2>
+
+                            <div id="flush-collapse{{ $section->id }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ $section->id }}">
+                                <div class="accordion-body">
+                                    <ul class="list-unstyled">
+                                        @foreach(\App\Models\Section::where('subsection_id', $section->id)->get() as $subsection)
+                                            <li>
+                                                <a href="/goods?section={{ $subsection->id }}" class="text-decoration-none">
+                                                    {{ $subsection->title }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     @endif
                 @endforeach
-            </ul>
+            </div>
         </div>
 
         <div class="col-9">
