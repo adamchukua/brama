@@ -2,7 +2,7 @@
 
 ## Опис
 
-Текст доповнюється...
+Курсова робота: електронний магазин на Laravel та Microsoft SQL.
 
 ## Вимоги до бази даних
 
@@ -28,4 +28,18 @@
 
 ### Windows
 
-Текст доповнюється...
+1. Завантажте та встановіть <a href="https://www.apachefriends.org/index.html" target="_blank">XAMPP</a>.
+2. Завантажте та встановіть <a href="https://getcomposer.org/download/" target="_blank">Composer</a> (**обравши чекбокс "Add this PHP to your path"**).
+3. Завантажте та встановіть <a href="https://www.microsoft.com/en-us/sql-server/sql-server-downloads">Microsoft SQL Server</a>.
+4. Завантажте базу [посилання на базу].
+5. Перейдіть у теку, в якій знаходитиметься проєкт та виконайте команду `git clone https://github.com/thegradle/point` (якщо у Вас немає встановленого git - завантажте та встановіть <a href="https://git-scm.com/downloads" target="_blank">його</a>).
+6. Перейдіть у корінь проєкту командою `cd point`.
+7. Перейменуйте файл `.env.example` командою у `.env`.
+8. Налаштуйте середовище на свій лад, або за замовчування: у файлі `.env` замініть наступні рядки:
+<br>`APP_NAME=Point`
+   `DB_DATABASE=point`
+9. Виконайте `composer install`.
+10. Виконайте `php artisan key:generate`.
+11. Виконайте `php artisan migrate`.
+12. Виконайте `php artisan storage:link`.
+13. Запустіть локальний сервер командою `php artisan serve`.
