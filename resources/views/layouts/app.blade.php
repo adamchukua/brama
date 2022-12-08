@@ -101,6 +101,10 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer class="text-muted text-center my-3">
+            © Інтернет-магазин «{{ config('app.name', 'Laravel') }}» {{ now()->year }}
+        </footer>
     </div>
 </body>
 </html>
