@@ -56,6 +56,39 @@
 
                 <button type="submit" class="btn btn-primary">Зберегти</button>
             </form>
+
+            <h3 class="fw-bold my-3">Видалення аккаунту</h3>
+
+            <p>Цю операцію неможливо відмінити!</p>
+
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#deleteUserModal">
+                Видалити акаунт
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Підтвердження видалення акаунту</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Видалити акаунт?<br>
+                <strong>Цю операцію не можна відмінити!</strong>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Відмінити</button>
+
+                <form action="/user/{{ $user->id }}/delete" method="post">
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit" class="btn btn-primary">Видалити акаунт</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
