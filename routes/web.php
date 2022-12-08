@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/guarantee', function (){
+   return view('guarantee');
+});
+Route::get('/delivery', function (){
+    return view('delivery');
+});
 Route::get('/good/{good}', [App\Http\Controllers\GoodController::class, 'show']);
 Route::group(['middleware' => 'verified'], function () {
     Route::post('/good/{good}/review/store', [App\Http\Controllers\ReviewController::class, 'store']);

@@ -50,7 +50,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/guarantee">Доставка</a>
+                            <a class="nav-link" href="/delivery">Доставка</a>
                         </li>
                     </ul>
 
