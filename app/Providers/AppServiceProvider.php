@@ -27,5 +27,9 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('hryvnias', function ($expression) {
             return "<?php echo round($expression, 2) . ' грн'; ?>";
         });
+
+        Blade::directive('dateonly', function ($expression) {
+            return "<?php echo date_format($expression, 'Y.m.d'); ?>";
+        });
     }
 }

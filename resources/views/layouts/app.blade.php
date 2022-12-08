@@ -81,7 +81,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/profile">Профіль</a>
+                                    <a class="dropdown-item" href="/user/{{ Auth::user()->id }}">Профіль</a>
 
                                     @can('create', \App\Models\Good::class)
                                         <a class="dropdown-item" href="/admin">Адмін-панель</a>
