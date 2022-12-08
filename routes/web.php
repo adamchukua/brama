@@ -27,3 +27,7 @@ Route::group(['middleware' => 'verified'], function () {
     Route::post('/good/{good}/review/store', [App\Http\Controllers\ReviewController::class, 'store']);
 });
 Route::get('/goods', [App\Http\Controllers\GoodController::class, 'index']);
+Route::get('/profile', [App\Http\Controllers\UserController::class, 'show']);
+Route::get('/admin', function () {
+   return view('admin.index');
+});
