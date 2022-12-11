@@ -9,9 +9,9 @@
             <h2 class="fw-bolder">Профіль</h2>
 
             <div class="nav flex-column nav-pills me-3 mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link active" href="/user/{{ $user->id }}">Перегляд</a>
+                <a class="nav-link" href="/user/{{ $user->id }}">Перегляд</a>
                 <a class="nav-link" href="/user/{{ $user->id }}/edit">Налаштування</a>
-                <a class="nav-link" href="/user/{{ $user->id }}/reviews">Відгуки</a>
+                <a class="nav-link active" href="/user/{{ $user->id }}/reviews">Відгуки</a>
             </div>
         </div>
 
