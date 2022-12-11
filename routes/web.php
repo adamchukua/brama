@@ -22,17 +22,25 @@ Route::get('/guarantee', function (){
 Route::get('/delivery', function (){
     return view('delivery');
 });
+
+Route::get('/goods', [App\Http\Controllers\GoodController::class, 'index']);
+Route::get('/admin', [App\Http\Controllers\GoodController::class, 'index']);
+
 Route::get('/good/{good}', [App\Http\Controllers\GoodController::class, 'show']);
 Route::group(['middleware' => 'verified'], function () {
     Route::post('/good/{good}/review/store', [App\Http\Controllers\ReviewController::class, 'store']);
 });
-Route::get('/goods', [App\Http\Controllers\GoodController::class, 'index']);
+Route::delete('/good/{good}/delete', [App\Http\Controllers\GoodController::class, 'delete']);
+Route::get('/good/{good}/edit', [App\Http\Controllers\GoodController::class, 'edit']);
+Route::patch('/good/{good}/update', [App\Http\Controllers\GoodController::class, 'update']);
+
 Route::get('/user/{user}', [App\Http\Controllers\UserController::class, 'show']);
 Route::get('/user/{user}/edit', [App\Http\Controllers\UserController::class, 'edit']);
 Route::patch('/user/{user}/update', [App\Http\Controllers\UserController::class, 'update']);
 Route::delete('/user/{user}/delete', [App\Http\Controllers\UserController::class, 'delete']);
-Route::get('/user/{user}/reviews', [App\Http\Controllers\ReviewController::class, 'index']);
+Route::get('/user/{user}/reviews', [App\Http\Controllers\ReviewController::class, 'show']);
+
+Route::get('/reviews', [App\Http\Controllers\ReviewController::class, 'index']);
 Route::get('/review/{review}/edit', [App\Http\Controllers\ReviewController::class, 'edit']);
 Route::patch('/review/{review}/update', [App\Http\Controllers\ReviewController::class, 'update']);
 Route::delete('/review/{review}/delete', [App\Http\Controllers\ReviewController::class, 'delete']);
-Route::get('/admin', [App\Http\Controllers\GoodController::class, 'index']);

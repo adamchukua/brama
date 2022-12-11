@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Good;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use TheSeer\Tokenizer\Exception;
 
@@ -60,5 +61,43 @@ class GoodController extends Controller
         $good->delete();
 
         return redirect()->back();
+    }
+
+    public function edit(Good $good)
+    {
+        $this->authorize('update', $good);
+
+        return view('goods.edit', compact('good'));
+    }
+
+    public function update(Good $good)
+    {
+        $this->authorize('update', $good);
+
+        $data = request()->validate([
+            'title' => ['string', 'min:5', 'max:250'],
+            'description' => ['string', 'max:1000'],
+            'price' => ['numeric', 'min:0', 'not_in:0'],
+            'section_id' => ['number'],
+            'seller_id' => ['number'],
+            'images' => ['required', 'array'],
+            'images.*' => ['required', 'mimes:jpg,jpeg,png,bmp', 'max:5120'],
+        ]);
+
+        if (request('images')) {
+            $good->images->each->delete();
+
+            foreach(request('images') as $image)
+            {
+                $imagePath = $image->store('images/' . $good->id, 'public');
+
+                Image::create([
+                    'good_id' => $good->id,
+                    'path' => $imagePath,
+                ]);
+            }
+        }
+
+        $good->update($data);
     }
 }

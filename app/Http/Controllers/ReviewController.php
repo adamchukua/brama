@@ -32,12 +32,12 @@ class ReviewController extends Controller
 
         $review->delete();
 
-        return redirect('/user/' . $user . '/reviews');
+        return redirect()->back();
     }
 
-    public function index(User $user)
+    public function show(User $user)
     {
-        return view('reviews.index', compact('user'));
+        return view('reviews.show', compact('user'));
     }
 
     public function edit(Review $review)
@@ -58,5 +58,12 @@ class ReviewController extends Controller
         $review->update($data);
 
         return redirect('/user/' . $review->user->id . '/reviews');
+    }
+
+    public function index()
+    {
+        $reviews = Review::all();
+
+        return view('admin.reviews.index', compact('reviews'));
     }
 }

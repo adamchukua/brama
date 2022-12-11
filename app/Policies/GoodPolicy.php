@@ -53,7 +53,7 @@ class GoodPolicy
      */
     public function update(User $user, Good $good)
     {
-        //return $user->is_admin == 1;
+        return $user->is_admin == 1;
     }
 
     /**
