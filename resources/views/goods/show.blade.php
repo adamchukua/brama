@@ -59,9 +59,9 @@
                     </div>
 
                     <div class="col-4">
-                        <h1>{{ $good->title }}</h1>
+                        <h1 class="fw-bold">{{ $good->title }}</h1>
 
-                        <p>Продавець: {{ $good->seller->title }}</p>
+                        <p class="text-muted">Продавець: {{ $good->seller->title }}</p>
 
                         <p><strong>@hryvnias($good->price)</strong></p>
 
@@ -75,7 +75,7 @@
 
                 <div id="desc">
                     @if($good->description != null)
-                        <h2>Опис</h2>
+                        <h2 class="fw-bold my-3">Опис</h2>
 
                         <p>{{ $good->description }}</p>
                     @endif
@@ -83,7 +83,7 @@
 
                 <div id="chars">
                     @if($good->characteristics->first() != null)
-                        <h2>Характеристики</h2>
+                        <h2 class="fw-bold my-3">Характеристики</h2>
 
                         <table class="table">
                             @foreach($good->characteristics as $characteristic)
@@ -97,7 +97,7 @@
                 </div>
 
                 <div id="reviews">
-                    <h2>Відгуки</h2>
+                    <h2 class="fw-bold my-3">Відгуки</h2>
 
                     @guest
                         <p class="text-muted">Аби написати відгук Ви повинні <a href="{{ route("login") }}">увійти</a> в акаунт,
