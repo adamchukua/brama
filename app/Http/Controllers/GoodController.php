@@ -18,7 +18,8 @@ class GoodController extends Controller
     public function index(Request $request)
     {
         if ($request->path() == 'admin' &&
-            auth()->user() != null &&
+            auth()->user() == null ||
+            $request->path() == 'admin' &&
             auth()->user()->is_admin == 0)
         {
             abort(403);
