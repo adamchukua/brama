@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -48,7 +49,9 @@ class UserController extends Controller
     {
         $this->authorize('view', $user);
 
-        return view('users.show', compact('user'));
+        $age = DB::select('select dbo.getAge(?) as res', [$user->created_at])[0]->res;
+
+        return view('users.show', compact('user', 'age'));
     }
 
     /**

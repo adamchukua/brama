@@ -19,7 +19,7 @@
             <h1 class="fw-bolder mb-3">{{ $user->name }}</h1>
 
             <p><strong>Email:</strong> {{ $user->email }}</p>
-            <p><strong>Зареєстрований:</strong> @dateonly($user->created_at)</p>
+            <p><strong>Зареєстрований:</strong> {{ $age }} (@dateonly($user->created_at))</p>
             <p><strong>Кількість відгуків:</strong> {{ $user->reviews->count() }}</p>
         </div>
     </div>
