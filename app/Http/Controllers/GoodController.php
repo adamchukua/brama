@@ -28,8 +28,10 @@ class GoodController extends Controller
 
         $request_all = http_build_query($request->all());
 
-        $goods = Good::selectRaw('goods.title, goods.price, goods.id, goods.quantity, goods.created_at, goods.updated_at')
-            ->join('sections', 'sections.id', '=', 'goods.section_id');
+        $goods = Good::selectRaw('goods.title, goods.price, goods.id, goods.quantity,
+            goods.created_at, goods.updated_at, count(reviews.id) as reviews_number')
+            ->join('sections', 'sections.id', '=', 'goods.section_id')
+            ->leftJoin('reviews', 'reviews.good_id', '=', 'goods.id');
 
         if ($request['search'])
         {
@@ -47,8 +49,31 @@ class GoodController extends Controller
             $goods = $goods->where('goods.seller_id', '!=', '1');
         }
 
-        if ($request['section']) {
+        if ($request['section'])
+        {
             $goods = $goods->where('section_id', '=', $request['section']);
+        }
+
+        $goods = $goods->groupByRaw('goods.title, goods.price, goods.id, goods.quantity,
+            goods.created_at, goods.updated_at');
+
+        if ($request['sort'])
+        {
+            switch ($request['sort'])
+            {
+                case '-price':
+                    $goods = $goods->orderBy('price', 'asc');
+                    break;
+                case 'price':
+                    $goods = $goods->orderBy('price', 'desc');
+                    break;
+                case '-pop':
+                    $goods = $goods->orderBy('reviews_number', 'asc');
+                    break;
+                case 'pop':
+                    $goods = $goods->orderBy('reviews_number', 'desc');
+                    break;
+            }
         }
 
         $goods = $goods->get();
