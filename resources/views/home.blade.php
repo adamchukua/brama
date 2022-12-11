@@ -60,25 +60,6 @@
                     </div>
                 @endforeach
             </div>
-
-            <h1 class="fw-bold my-4">Ви нещодавно переглядали</h1>
-
-            <div class="row g-2">
-                @foreach($goods as $good)
-                    <div class="col-4">
-                        <div class="card p-2">
-                            <img src="/storage/{{ $good->images->first()->path ?? '' }}"
-                                 class="card-img-top" alt="{{ $good->title }}">
-
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $good->title }}</h5>
-                                <p class="card-text fw-bold">@hryvnias($good->price)</p>
-                                <a href="/good/{{ $good->id }}" class="btn btn-primary">Купити</a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
         </div>
     </div>
 </div>

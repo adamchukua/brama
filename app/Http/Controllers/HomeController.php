@@ -20,7 +20,7 @@ class HomeController extends Controller
             ->join('reviews', 'reviews.good_id', 'goods.id')
             ->whereRaw('datediff(month, getdate(), goods.created_at) = 0')
             ->groupByRaw('goods.id, goods.title, goods.price')
-            ->orderBy('number', 'desc')->take(6)->get();
+            ->orderBy('number', 'desc')->take(12)->get();
 
         return view('home', compact('sections', 'goods'));
     }
