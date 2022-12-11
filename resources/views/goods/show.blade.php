@@ -26,7 +26,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="/">Головна</a>
+                        <a href="/goods">Головна</a>
                     </li>
 
                     @php
@@ -35,7 +35,7 @@
 
                     @while($section != null)
                         <li class="breadcrumb-item">
-                            <a href="#">{{ $section->title }}</a>
+                            <a href="/goods?section={{ $section->id }}">{{ $section->title }}</a>
                         </li>
 
                         @php
@@ -44,7 +44,7 @@
                     @endwhile
 
                     <li class="breadcrumb-item">
-                        <a href="#">{{ $good->section->title }}</a>
+                        <a href="/goods?section={{ $good->section->id }}">{{ $good->section->title }}</a>
                     </li>
 
                     <li class="breadcrumb-item active">{{ $good->title }}</li>
