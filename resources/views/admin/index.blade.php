@@ -85,40 +85,37 @@
                                 Видалити
                             </button>
                         </td>
-                    </tr>
 
-                    <div class="modal fade"
-                         id="deleteGoodModal{{ $good->id }}"
-                         tabindex="-1"
-                         aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Підтвердження видалення товару</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Видалити "{{ $good->title }}"?<br>
-                                    <strong>Цю операцію не можна відмінити!</strong>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Відмінити</button>
+                        <td>
+                            <div class="modal fade"
+                                 id="deleteGoodModal{{ $good->id }}"
+                                 tabindex="-1"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Підтвердження видалення товару</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Видалити "{{ $good->title }}"?<br>
+                                            <strong>Цю операцію не можна відмінити!</strong>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Відмінити</button>
 
-                                    <form action="/good/{{ $good->id }}/delete" method="post">
-                                        @csrf
-                                        @method('DELETE')
+                                            <form action="/good/{{ $good->id }}/delete" method="post">
+                                                @csrf
+                                                @method('DELETE')
 
-                                        <button type="button"
-                                                class="btn btn-secondary"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#deleteGoodModal">
-                                            Видалити товар
-                                        </button>
-                                    </form>
+                                                <button class="btn btn-secondary" type="submit">Видалити</button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </td>
+                    </tr>
                 @endforeach
             </table>
          </div>

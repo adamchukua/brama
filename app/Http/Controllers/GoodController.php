@@ -52,4 +52,13 @@ class GoodController extends Controller
             return view('goods.index', compact('goods', 'request_all'));
         }
     }
+
+    public function delete(Good $good)
+    {
+        $this->authorize('delete', $good);
+
+        $good->delete();
+
+        return redirect()->back();
+    }
 }

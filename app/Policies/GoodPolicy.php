@@ -65,7 +65,7 @@ class GoodPolicy
      */
     public function delete(User $user, Good $good)
     {
-        //
+        return $user->is_admin == 1;
     }
 
     /**
