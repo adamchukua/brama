@@ -100,8 +100,16 @@
                     @csrf
 
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Напишіть ваш відгук" name="text">
+                        <input type="text"
+                               class="form-control @error('text') is-invalid @enderror"
+                               placeholder="Напишіть ваш відгук" name="text">
                         <button class="btn btn-outline-secondary" type="submit">Віправити</button>
+
+                        @error('text')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </form>
             @endif
