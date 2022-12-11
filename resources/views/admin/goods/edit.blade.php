@@ -117,7 +117,7 @@
                     <input class="form-control" type="file" id="images" name="images[]" multiple>
                 </div>
 
-                <a href="/good/{{ $good->id }}/characteristics/edit" class="btn btn-secondary me-3">
+                <a href="/good/{{ $good->id }}/characteristics" class="btn btn-secondary me-3">
                     Оновити характеристики
                 </a>
                 <button type="submit" class="btn btn-primary">Оновити</button>
