@@ -26,6 +26,8 @@ Route::get('/delivery', function (){
 Route::get('/goods', [App\Http\Controllers\GoodController::class, 'index']);
 Route::get('/admin', [App\Http\Controllers\GoodController::class, 'index']);
 
+Route::get('/good/create', [App\Http\Controllers\GoodController::class, 'create']);
+Route::post('/good/store', [App\Http\Controllers\GoodController::class, 'store']);
 Route::get('/good/{good}', [App\Http\Controllers\GoodController::class, 'show']);
 Route::group(['middleware' => 'verified'], function () {
     Route::post('/good/{good}/review/store', [App\Http\Controllers\ReviewController::class, 'store']);

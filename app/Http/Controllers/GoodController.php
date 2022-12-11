@@ -78,8 +78,9 @@ class GoodController extends Controller
             'title' => ['string', 'min:5', 'max:250'],
             'description' => ['string', 'max:1000'],
             'price' => ['numeric', 'min:0', 'not_in:0'],
-            'section_id' => ['number'],
-            'seller_id' => ['number'],
+            'quantity' => ['numeric', 'min:1'],
+            'section_id' => ['numeric'],
+            'seller_id' => ['numeric'],
             'images' => ['required', 'array'],
             'images.*' => ['required', 'mimes:jpg,jpeg,png,bmp', 'max:5120'],
         ]);
@@ -91,13 +92,48 @@ class GoodController extends Controller
             {
                 $imagePath = $image->store('images/' . $good->id, 'public');
 
-                Image::create([
-                    'good_id' => $good->id,
-                    'path' => $imagePath,
+                $good->images()->create([
+                    'path' => $imagePath
                 ]);
             }
         }
 
         $good->update($data);
+    }
+
+    public function create()
+    {
+        $this->authorize('create', Good::class);
+
+        return view('admin.goods.create');
+    }
+
+    public function store()
+    {
+        $this->authorize('create', Good::class);
+
+        $data = request()->validate([
+            'title' => ['required', 'string', 'min:5', 'max:250'],
+            'description' => ['string', 'nullable', 'max:1000'],
+            'price' => ['required', 'numeric', 'min:0', 'not_in:0'],
+            'quantity' => ['required', 'numeric', 'min:1'],
+            'section_id' => ['required', 'numeric'],
+            'seller_id' => ['required', 'numeric'],
+            'images' => ['required', 'array'],
+            'images.*' => ['required', 'mimes:jpg,jpeg,png,bmp,webp', 'max:5120'],
+        ]);
+
+        $good = Good::create($data);
+
+        foreach(request('images') as $image)
+        {
+            $imagePath = $image->store('images/' . $good->id, 'public');
+
+            $good->images()->create([
+                'path' => $imagePath
+            ]);
+        }
+
+        return redirect('/good/' . $good->id . '/characteristics');
     }
 }

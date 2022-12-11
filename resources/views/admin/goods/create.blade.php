@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $good->title . 'Редагування')
+@section('title', 'Новий товар')
 
 @section('content')
 <div class="container">
@@ -11,18 +11,17 @@
             <div class="nav flex-column nav-pills me-3 mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link" href="/admin">Товари</a>
                 <a class="nav-link" href="/reviews">Відгуки</a>
-                <a class="nav-link" href="/good/create">Додати товар</a>
+                <a class="nav-link active" href="/good/create">Додати товар</a>
             </div>
         </div>
 
         <div class="col-9">
             <div class="d-flex justify-content-between align-items-baseline">
-                <h1 class="fw-bold">Редагування "{{ $good->title }}"</h1>
+                <h1 class="fw-bold">Додавання нового товару</h1>
             </div>
 
-            <form action="/good/{{ $good->id }}/update" method="post" enctype="multipart/form-data">
+            <form action="/good/store" method="post" enctype="multipart/form-data">
                 @csrf
-                @method('PATCH')
 
                 <div class="mb-3">
                     <label for="name" class="form-label">Назва товару</label>
@@ -31,7 +30,7 @@
                            class="form-control @error('title') is-invalid @enderror"
                            id="title"
                            name="title"
-                           value="{{ old('title', $good->title) }}">
+                           value="{{ old('title') }}" required>
 
                     @error('title')
                         <span class="invalid-feedback" role="alert">
@@ -45,7 +44,7 @@
 
                     <textarea class="form-control @error('description') is-invalid @enderror"
                            id="description"
-                           name="description">{{ old('description', $good->description) }}</textarea>
+                           name="description">{{ old('description') }}</textarea>
 
                     @error('description')
                         <span class="invalid-feedback" role="alert">
@@ -57,11 +56,11 @@
                 <div class="mb-3">
                     <label for="price" class="form-label">Вартість (грн)</label>
 
-                    <input type="number" step="0.01" min="0.01"
+                        <input type="number" step="0.01" min="0.01"
                            class="form-control @error('price') is-invalid @enderror"
                            id="price"
                            name="price"
-                           value="{{ old('price', $good->price) }}">
+                           value="{{ old('price') }}" required>
 
                     @error('price')
                         <span class="invalid-feedback" role="alert">
@@ -77,7 +76,7 @@
                            class="form-control @error('quantity') is-invalid @enderror"
                            id="quantity"
                            name="quantity"
-                           value="{{ old('quantity', $good->quantity) }}">
+                           value="{{ old('quantity') }}" required>
 
                     @error('quantity')
                         <span class="invalid-feedback" role="alert">
@@ -92,7 +91,7 @@
                     <select name="section_id" id="section" class="form-select">
                         @foreach(\App\Models\Section::whereNotNull('subsection_id')->get() as $section)
                             <option value="{{ $section->id }}"
-                                {{ (old('section_id', $good->section->id) == $section->id) ? 'selected' : '' }}>
+                                {{ (old('section_id') == $section->id) ? 'selected' : '' }}>
                                 {{ $section->title }}
                             </option>
                         @endforeach
@@ -105,7 +104,7 @@
                     <select name="seller_id" id="seller" class="form-select">
                         @foreach(\App\Models\Seller::all() as $seller)
                             <option value="{{ $seller->id }}"
-                                {{ (old('seller_id', $good->seller->id) == $seller->id) ? 'selected' : '' }}>
+                                {{ (old('seller_id') == $seller->id) ? 'selected' : '' }}>
                                 {{ $seller->title }}
                             </option>
                         @endforeach
@@ -113,14 +112,11 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="images" class="form-label">Фотографії товару (не змінюйте, якщо не хочете оновити)</label>
-                    <input class="form-control" type="file" id="images" name="images[]" multiple>
+                    <label for="images" class="form-label">Фотографії товару</label>
+                    <input class="form-control" type="file" id="image" name="images[]" multiple required>
                 </div>
 
-                <a href="/good/{{ $good->id }}/characteristics/edit" class="btn btn-secondary me-3">
-                    Оновити характеристики
-                </a>
-                <button type="submit" class="btn btn-primary">Оновити</button>
+                <button type="submit" class="btn btn-primary">Зберегти</button>
             </form>
          </div>
     </div>

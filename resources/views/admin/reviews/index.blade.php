@@ -11,6 +11,7 @@
             <div class="nav flex-column nav-pills me-3 mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link" href="/admin">Товари</a>
                 <a class="nav-link active" href="/reviews">Відгуки</a>
+                <a class="nav-link" href="/good/create">Додати товар</a>
             </div>
         </div>
 

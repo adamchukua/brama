@@ -9,6 +9,15 @@ class Good extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'description',
+        'price',
+        'quantity',
+        'section_id',
+        'seller_id'
+    ];
+
     public function characteristics()
     {
         return $this->hasMany(Characteristic::class);
