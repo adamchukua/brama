@@ -53,7 +53,7 @@ class CharacteristicPolicy
      */
     public function update(User $user, Characteristic $characteristic)
     {
-        //
+        return $user->is_admin == 1;
     }
 
     /**

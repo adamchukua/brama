@@ -17,17 +17,26 @@ class CharacteristicController extends Controller
 
     public function edit(Good $good, Characteristic $characteristic)
     {
-        //$this->authorize('update', $characteristic);
+        $this->authorize('update', $characteristic);
+
+        $characteristic_edit = $characteristic;
 
         return view('admin.characteristics.edit', compact('good',
-            'characteristic'));
+            'characteristic_edit'));
     }
 
-    public function update(Good $good)
+    public function update(Characteristic $characteristic)
     {
-        //$this->authorize('update');
+        $this->authorize('update', $characteristic);
 
+        $data = request()->validate([
+            'title' => ['required', 'string', 'min:2', 'max:100'],
+            'value' => ['required', 'string', 'min:2', 'max:100']
+        ]);
 
+        $characteristic->update($data);
+
+        return redirect('/good/' . $characteristic->good->id . '/characteristics');
     }
 
     public function store(Good $good)
