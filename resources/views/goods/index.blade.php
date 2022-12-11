@@ -6,6 +6,44 @@
 <div class="container">
     <div class="row">
         <div class="col-3">
+            <h2 class="fw-bolder">Фільтри</h2>
+
+            <p class="fw-bold">Категорія</p>
+
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                @foreach(\App\Models\Section::all() as $section)
+                    @if($section->subsection_id == null)
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed px-1"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapse{{ $section->id }}"
+                                        aria-expanded="false"
+                                        aria-controls="flush-collapse{{ $section->id }}">
+                                    {{ $section->title }}
+                                </button>
+                            </h2>
+
+                            <div id="flush-collapse{{ $section->id }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ $section->id }}">
+                                <div class="accordion-body">
+                                    <ul class="list-unstyled">
+                                        @foreach(\App\Models\Section::where('subsection_id', $section->id)->get() as $subsection)
+                                            <li>
+                                                <a href="/goods?section={{ $subsection->id }}"
+                                                   class="text-decoration-none {{ $subsection->id == app('request')->input('section') ? 'fw-bold' : '' }}">
+                                                    {{ $subsection->title }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+
             <div class="filters">
                 <div class="filter-item">
                     <p class="fw-bold">Продавець</p>
