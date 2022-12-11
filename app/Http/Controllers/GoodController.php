@@ -31,16 +31,24 @@ class GoodController extends Controller
         $goods = Good::selectRaw('goods.title, goods.price, goods.id, goods.quantity, goods.created_at, goods.updated_at')
             ->join('sections', 'sections.id', '=', 'goods.section_id');
 
-        if ($request['search']) {
+        if ($request['search'])
+        {
             $goods = $goods->where('goods.title', 'LIKE', "%{$request['search']}%")
                 ->orWhere('goods.description', 'LIKE', "%{$request['search']}%")
                 ->orWhere('sections.title', 'LIKE', "%{$request['search']}%");
         }
 
-        if ($request['seller'] == 'brama') {
+        if ($request['seller'] == 'brama')
+        {
             $goods = $goods->where('goods.seller_id', '=', '1');
-        } else if ($request['seller'] == 'other') {
+        }
+        else if ($request['seller'] == 'other')
+        {
             $goods = $goods->where('goods.seller_id', '!=', '1');
+        }
+
+        if ($request['section']) {
+            $goods = $goods->where('section_id', '=', $request['section']);
         }
 
         $goods = $goods->get();

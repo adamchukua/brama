@@ -10,14 +10,18 @@
                 <div class="filter-item">
                     <p class="fw-bold">Продавець</p>
 
-                    <form action="">
+                    <form action="" method="get">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="seller_brama" id="seller_brama">
-                            <label class="form-check-label" for="seller_brama">Brama</label>
+                            <label class="form-check-label" for="seller_brama">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="seller_brama" onclick="redirect()">Brama
+                            </label>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="seller_other" id="seller_other">
+                            <input class="form-check-input"
+                                   type="checkbox" onclick="redirect()" id="seller_other">
                             <label class="form-check-label" for="seller_other">Інші</label>
                         </div>
                     </form>
@@ -40,13 +44,49 @@
         </div>
 
         <div class="col-9">
-            @if(app('request')->input('search'))
-                <h1>Результат пошуку: {{ app('request')->input('search') }}</h1>
-            @else
-                <h1>Всі товари</h1>
-            @endif
+            <div class="d-flex justify-content-between align-items-baseline">
+                <div>
+                    @if(app('request')->input('search'))
+                        <h1 class="fw-bold">Результат пошуку: {{ app('request')->input('search') }}</h1>
+                    @elseif(app('request')->input('section'))
+                        <h1 class="fw-bold">
+                            {{ \App\Models\Section::where('id', '=', app('request')->input('section'))->first()->title }}
+                        </h1>
+                    @else
+                        <h1 class="fw-bold">Всі товари</h1>
+                    @endif
 
-            <p class="text-muted">Кількість: {{ $goods->count() }}</p>
+                    <p class="text-muted">Кількість: {{ $goods->count() }}</p>
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Сортувати:
+                    </button>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item"
+                           href="/search?sort=time{{ request()->type ? '&type=' . request()->type : '' }}">
+                            ↑ ціна
+                        </a>
+
+                        <a class="dropdown-item"
+                           href="/search?sort=time{{ request()->type ? '&type=' . request()->type : '' }}">
+                            ↓ ціна
+                        </a>
+
+                        <a class="dropdown-item"
+                           href="/search?sort=time{{ request()->type ? '&type=' . request()->type : '' }}">
+                            ↑ популярність
+                        </a>
+
+                        <a class="dropdown-item"
+                           href="/search?sort=time{{ request()->type ? '&type=' . request()->type : '' }}">
+                            ↓ популярність
+                        </a>
+                    </div>
+                </div>
+            </div>
 
             <div class="row g-2">
                 @foreach($goods as $good)
@@ -67,4 +107,14 @@
          </div>
     </div>
 </div>
+
+<script>
+    function redirect()
+    {
+        if(document.getElementById('seller_brama').checked === true)
+            window.location.href = '/goods?seller=brama&{{ $request_all }}';
+        else if(document.getElementById('seller_other').checked === true)
+            window.location.href = '/goods?seller=other&{{ $request_all }}';
+    }
+</script>
 @endsection

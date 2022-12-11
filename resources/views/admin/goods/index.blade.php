@@ -20,6 +20,10 @@
                 <div>
                     @if(app('request')->input('search'))
                         <h1 class="fw-bold">Результат пошуку: {{ app('request')->input('search') }}</h1>
+                    @elseif(app('request')->input('section'))
+                        <h1 class="fw-bold">
+                            {{ \App\Models\Section::where('id', '=', app('request')->input('section')) }}
+                        </h1>
                     @else
                         <h1 class="fw-bold">Всі товари</h1>
                     @endif
