@@ -26,6 +26,8 @@ class ReviewController extends Controller
 
     public function delete(Review $review)
     {
+        $this->authorize('delete', $review);
+
         $user = $review->user->id;
 
         $review->delete();
