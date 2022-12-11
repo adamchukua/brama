@@ -34,4 +34,8 @@ class ReviewController extends Controller
 
         return redirect('/user/' . $user . '/reviews');
     }
+
+    public function index(User $user) {
+        return view('reviews.index', compact('user'));
+    }
 }

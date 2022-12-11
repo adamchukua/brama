@@ -100,8 +100,4 @@ class UserController extends Controller
 
         return redirect('/');
     }
-
-    public function reviews(User $user) {
-        return view('users.reviews', compact('user'));
-    }
 }
