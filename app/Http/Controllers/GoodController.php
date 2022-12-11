@@ -67,7 +67,7 @@ class GoodController extends Controller
     {
         $this->authorize('update', $good);
 
-        return view('goods.edit', compact('good'));
+        return view('admin.goods.edit', compact('good'));
     }
 
     public function update(Good $good)

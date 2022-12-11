@@ -33,6 +33,10 @@ Route::group(['middleware' => 'verified'], function () {
 Route::delete('/good/{good}/delete', [App\Http\Controllers\GoodController::class, 'delete']);
 Route::get('/good/{good}/edit', [App\Http\Controllers\GoodController::class, 'edit']);
 Route::patch('/good/{good}/update', [App\Http\Controllers\GoodController::class, 'update']);
+Route::get('/good/{good}/characteristics', [App\Http\Controllers\CharacteristicController::class, 'index']);
+Route::post('/good/{good}/characteristic/store', [App\Http\Controllers\CharacteristicController::class, 'store']);
+Route::get('/good/{good}/characteristic/{characteristic}/edit', [App\Http\Controllers\CharacteristicController::class, 'edit']);
+Route::patch('/good/{good}/characteristic/{characteristic}/update', [App\Http\Controllers\CharacteristicController::class, 'update']);
 
 Route::get('/user/{user}', [App\Http\Controllers\UserController::class, 'show']);
 Route::get('/user/{user}/edit', [App\Http\Controllers\UserController::class, 'edit']);
