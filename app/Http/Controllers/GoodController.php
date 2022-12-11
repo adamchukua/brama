@@ -46,7 +46,7 @@ class GoodController extends Controller
 
         if ($request->path() == 'admin')
         {
-            return view('admin.index', compact('goods', 'request_all'));
+            return view('admin.goods.index', compact('goods', 'request_all'));
         }
         else {
             return view('goods.index', compact('goods', 'request_all'));
