@@ -42,7 +42,7 @@
                                     Змінити
                                 </a>
 
-                                <form action="/user/{{ $user->id }}/review/{{ $review->id }}/delete"
+                                <form action="/review/{{ $review->id }}/delete"
                                       method="post">
                                     @csrf
                                     @method('DELETE')

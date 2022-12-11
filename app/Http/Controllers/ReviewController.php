@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Good;
+use App\Models\Review;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -20,5 +22,14 @@ class ReviewController extends Controller
         ], $data));
 
         return redirect('/good/' . $good->id);
+    }
+
+    public function delete(Review $review)
+    {
+        $user = $review->user->id;
+
+        $review->delete();
+
+        return redirect('/user/' . $user . '/reviews');
     }
 }
