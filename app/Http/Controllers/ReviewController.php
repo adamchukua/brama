@@ -42,11 +42,15 @@ class ReviewController extends Controller
 
     public function edit(Review $review)
     {
+        $this->authorize('update', $review);
+
         return view('reviews.edit', compact('review'));
     }
 
     public function update(Review $review)
     {
+        $this->authorize('update', $review);
+
         $data = request()->validate([
             'text' => ['string', 'min:10', 'max:2000']
         ]);
