@@ -97,7 +97,7 @@
                         <h1 class="fw-bold">Всі товари</h1>
                     @endif
 
-                    <p class="text-muted">Кількість: {{ $goods->count() }}</p>
+                    <p class="text-muted">Кількість: {{ $goods_count }}</p>
                 </div>
 
                 <div class="dropdown">
@@ -144,6 +144,10 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+
+            <div class="d-flex justify-content-center mt-4">
+                {{ $goods->links() }}
             </div>
          </div>
     </div>

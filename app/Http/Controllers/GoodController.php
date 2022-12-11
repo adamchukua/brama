@@ -76,14 +76,15 @@ class GoodController extends Controller
             }
         }
 
-        $goods = $goods->get();
+        $goods_count = $goods->get()->count();
+        $goods = $goods->paginate(10);
 
         if ($request->path() == 'admin')
         {
-            return view('admin.goods.index', compact('goods', 'request_all'));
+            return view('admin.goods.index', compact('goods', 'request_all', 'goods_count'));
         }
         else {
-            return view('goods.index', compact('goods', 'request_all'));
+            return view('goods.index', compact('goods', 'request_all', 'goods_count'));
         }
     }
 

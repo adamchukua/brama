@@ -92,6 +92,10 @@
             @else
                 <p>Поки що ніхто не писав відгуки...</p>
             @endif
+
+            <div class="d-flex justify-content-center mt-4">
+                {{ $reviews->links() }}
+            </div>
          </div>
     </div>
 </div>

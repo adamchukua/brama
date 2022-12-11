@@ -28,7 +28,7 @@
                     <th>Дії</th>
                 </tr>
 
-                @foreach($good->characteristics as $characteristic)
+                @foreach($characteristics as $characteristic)
                     <tr>
                         <td>{{ $characteristic->id }}</td>
                         <td>{{ $characteristic->title }}</td>
@@ -83,6 +83,10 @@
 
                 <button class="btn btn-primary" type="submit">Додати характеристику</button>
             </form>
+
+            <div class="d-flex justify-content-center mt-4">
+                {{ $characteristics->links() }}
+            </div>
          </div>
     </div>
 </div>

@@ -12,7 +12,9 @@ class CharacteristicController extends Controller
     {
         $this->authorize('viewAny', Characteristic::class);
 
-        return view('admin.characteristics.index', compact('good'));
+        $characteristics = $good->characteristics()->paginate(10);
+
+        return view('admin.characteristics.index', compact('good', 'characteristics'));
     }
 
     public function edit(Good $good, Characteristic $characteristic)

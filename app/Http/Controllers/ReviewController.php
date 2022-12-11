@@ -37,7 +37,9 @@ class ReviewController extends Controller
 
     public function show(User $user)
     {
-        return view('reviews.show', compact('user'));
+        $reviews = $user->reviews()->paginate(10);
+
+        return view('reviews.show', compact('user', 'reviews'));
     }
 
     public function edit(Review $review)
@@ -62,7 +64,7 @@ class ReviewController extends Controller
 
     public function index()
     {
-        $reviews = Review::all();
+        $reviews = Review::paginate(10);
 
         return view('admin.reviews.index', compact('reviews'));
     }

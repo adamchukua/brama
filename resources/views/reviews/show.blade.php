@@ -27,7 +27,7 @@
                         <th>Дії</th>
                     </tr>
 
-                    @foreach($user->reviews as $review)
+                    @foreach($reviews as $review)
                         <tr>
                             <td>
                                 <a href="/good/{{ $review->good->id }}">
@@ -56,6 +56,10 @@
             @else
                 <p>Ви поки що не написали ні одного коментаря...</p>
             @endif
+
+            <div class="d-flex justify-content-center mt-4">
+                {{ $reviews->links() }}
+            </div>
         </div>
     </div>
 </div>
