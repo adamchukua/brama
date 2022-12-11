@@ -32,6 +32,8 @@ Route::get('/user/{user}/edit', [App\Http\Controllers\UserController::class, 'ed
 Route::patch('/user/{user}/update', [App\Http\Controllers\UserController::class, 'update']);
 Route::delete('/user/{user}/delete', [App\Http\Controllers\UserController::class, 'delete']);
 Route::get('/user/{user}/reviews', [App\Http\Controllers\ReviewController::class, 'index']);
+Route::get('/review/{review}/edit', [App\Http\Controllers\ReviewController::class, 'edit']);
+Route::patch('/review/{review}/update', [App\Http\Controllers\ReviewController::class, 'update']);
 Route::delete('/review/{review}/delete', [App\Http\Controllers\ReviewController::class, 'delete']);
 Route::get('/admin', function () {
    return view('admin.index');
