@@ -37,7 +37,7 @@
                             <td>{{ $review->created_at }}</td>
                             <td>{{ $review->text }}</td>
                             <td>
-                                <a href="/user/{{ $user->id }}/review/{{ $review->id }}/edit"
+                                <a href="/review/{{ $review->id }}/edit"
                                    class="btn btn-secondary mb-2">
                                     Змінити
                                 </a>
