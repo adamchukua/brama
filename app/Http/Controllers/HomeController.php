@@ -17,7 +17,7 @@ class HomeController extends Controller
     {
         $sections = Section::all();
         $goods = Good::selectRaw('goods.id, goods.title, goods.price, count(reviews.id) number')
-            ->join('reviews', 'reviews.good_id', 'goods.id')
+            ->leftJoin('reviews', 'reviews.good_id', 'goods.id')
             ->whereRaw('datediff(month, getdate(), goods.created_at) = 0')
             ->groupByRaw('goods.id, goods.title, goods.price')
             ->orderBy('number', 'desc')->take(12)->get();
