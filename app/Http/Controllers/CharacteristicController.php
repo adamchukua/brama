@@ -43,4 +43,13 @@ class CharacteristicController extends Controller
 
         return redirect()->back();
     }
+
+    public function delete(Characteristic $characteristic)
+    {
+        $this->authorize('delete', $characteristic);
+
+        $characteristic->delete();
+
+        return redirect()->back();
+    }
 }

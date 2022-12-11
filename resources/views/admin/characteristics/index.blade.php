@@ -38,7 +38,7 @@
                                 Змінити
                             </a>
 
-                            <form action="/good/{{ $good->id }}/characteristic/{{ $characteristic->id }}/edit">
+                            <form action="/characteristic/{{ $characteristic->id }}/delete" method="post">
                                 @csrf
                                 @method('DELETE')
 

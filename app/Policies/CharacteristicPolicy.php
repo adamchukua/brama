@@ -65,7 +65,7 @@ class CharacteristicPolicy
      */
     public function delete(User $user, Characteristic $characteristic)
     {
-        //
+        return $user->is_admin == 1;
     }
 
     /**

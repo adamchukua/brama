@@ -37,6 +37,7 @@ Route::get('/good/{good}/characteristics', [App\Http\Controllers\CharacteristicC
 Route::post('/good/{good}/characteristic/store', [App\Http\Controllers\CharacteristicController::class, 'store']);
 Route::get('/good/{good}/characteristic/{characteristic}/edit', [App\Http\Controllers\CharacteristicController::class, 'edit']);
 Route::patch('/good/{good}/characteristic/{characteristic}/update', [App\Http\Controllers\CharacteristicController::class, 'update']);
+Route::delete('/characteristic/{characteristic}/delete', [App\Http\Controllers\CharacteristicController::class, 'delete']);
 
 Route::get('/user/{user}', [App\Http\Controllers\UserController::class, 'show']);
 Route::get('/user/{user}/edit', [App\Http\Controllers\UserController::class, 'edit']);
