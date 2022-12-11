@@ -53,18 +53,20 @@
                             <label class="form-check-label" for="seller_brama">
                                 <input class="form-check-input"
                                        type="checkbox"
-                                       id="seller_brama" onclick="redirect()">Brama
+                                       id="seller_brama"
+                                       onclick="redirect()" {{ app('request')->input('seller') == 'brama' ? 'checked' : '' }}>Brama
                             </label>
                         </div>
 
                         <div class="form-check">
                             <input class="form-check-input"
-                                   type="checkbox" onclick="redirect()" id="seller_other">
+                                   type="checkbox" onclick="redirect()" id="seller_other"{{ app('request')->input('seller') == 'other' ? 'checked' : '' }}>
                             <label class="form-check-label" for="seller_other">Інші</label>
                         </div>
                     </form>
                 </div>
 
+                <!--
                 <div class="filter-item mt-3">
                     <p class="fw-bold">Ціна</p>
 
@@ -78,6 +80,7 @@
                         <button class="btn btn-secondary ms-2">ОК</button>
                     </form>
                 </div>
+                -->
             </div>
         </div>
 
@@ -104,22 +107,22 @@
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item"
-                           href="/search?sort=time{{ request()->type ? '&type=' . request()->type : '' }}">
+                           href="/goods?sort=-price{{ request()->section ? '&section=' . request()->section : '' }}">
                             ↑ ціна
                         </a>
 
                         <a class="dropdown-item"
-                           href="/search?sort=time{{ request()->type ? '&type=' . request()->type : '' }}">
+                           href="/goods?sort=price{{ request()->section ? '&section=' . request()->section : '' }}">
                             ↓ ціна
                         </a>
 
                         <a class="dropdown-item"
-                           href="/search?sort=time{{ request()->type ? '&type=' . request()->type : '' }}">
+                           href="/goods?sort=-pop{{ request()->section ? '&section=' . request()->section : '' }}">
                             ↑ популярність
                         </a>
 
                         <a class="dropdown-item"
-                           href="/search?sort=time{{ request()->type ? '&type=' . request()->type : '' }}">
+                           href="/goods?sort=pop{{ request()->section ? '&section=' . request()->section : '' }}">
                             ↓ популярність
                         </a>
                     </div>
