@@ -35,6 +35,4 @@ Route::get('/user/{user}/reviews', [App\Http\Controllers\ReviewController::class
 Route::get('/review/{review}/edit', [App\Http\Controllers\ReviewController::class, 'edit']);
 Route::patch('/review/{review}/update', [App\Http\Controllers\ReviewController::class, 'update']);
 Route::delete('/review/{review}/delete', [App\Http\Controllers\ReviewController::class, 'delete']);
-Route::get('/admin', function () {
-   return view('admin.index');
-});
+Route::get('/admin', [App\Http\Controllers\GoodController::class, 'index']);
