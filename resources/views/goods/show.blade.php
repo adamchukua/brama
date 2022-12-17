@@ -55,7 +55,8 @@
 
                 <div class="row" id="main">
                     <div class="col-8">
-                        <img src="/storage/{{ $good->images->first()->path ?? '' }}" alt="{{ $good->title }}" class="w-100">
+                        <img src="/storage/{{ $good->images->first()->path ?? '' }}"
+                             alt="{{ $good->title }}" class="good--img">
                     </div>
 
                     <div class="col-4">
