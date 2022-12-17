@@ -38,7 +38,7 @@
         </div>
 
         <div class="col-9">
-            <img src="https://htmlcolorcodes.com/assets/images/colors/gray-color-solid-background-1920x1080.png"
+            <img src="images/home.png"
                  alt="ad"
                  class="w-100">
 
