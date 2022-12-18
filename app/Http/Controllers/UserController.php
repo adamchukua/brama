@@ -76,6 +76,8 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $this->authorize('update', $user);
+
         $data = $request->validate([
             'name' => ['string', 'max:255'],
             'email' => ['string', 'email', 'max:255', ($user->email != $request['email'] ? 'unique:users' : '')],
